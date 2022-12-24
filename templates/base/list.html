@@ -1,0 +1,54 @@
+{% extends 'base/index.html' %}
+
+{% block list %}
+
+<ol class="list-group list-group-numbered ">
+    {% for tickets in tickets %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{tickets.title}}</div>
+        User: {{tickets.user}}
+      </div>
+      <div style="justify-content: space-between;">
+        <a type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit ticket</a>
+        <a type="button" href="{% url 'delete' tickets.id %}" class="btn btn-secondary btn-sm">Delete Ticket</a>
+        <a href="{% url 'detail' tickets.id %}" type="button" class="btn btn-success btn-sm">View Ticket</a>
+
+      </div>  
+    </li>
+   
+  
+
+    {% endfor %}
+
+    
+  
+  </ul>
+  <br>
+  <ul class="pagination">
+    {% if is_paginated %}
+      {% if page_obj.has_previous %}
+          <li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+          </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i}}</a></li>
+
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+          <li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+          </li>
+      {% endif %}
+      </ul>
+      
+         
+        
+  {% endif %}
+
+
+{% endblock list%}

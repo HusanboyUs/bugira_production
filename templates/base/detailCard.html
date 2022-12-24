@@ -1,0 +1,15 @@
+{% extends 'base/index.html' %}
+
+{% block detailcard %}
+<div class="card">
+    <div class="card-header">
+      {{ticketdetail.title}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ticketdetail.summary}}</p>
+        <footer class="blockquote-footer">Created by: {{ticketdetail.user}}<cite title="Source Title">{{ticketdetail.created | date:' F d, Y'}}</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+{% endblock detailcard %}

@@ -1,0 +1,11 @@
+{% extends 'base/index.html' %}
+
+{% block deletecard %}
+
+<p>Are you sure to delete {{ticketdel.title}}</p>
+<form  method="post">
+    {% csrf_token %}
+    <a href="{% url 'tickets_list_view' %}">Cancel</a>
+    <button type="submit">Delete {{ticketdel.title}}</button>
+</form>
+{% endblock deletecard %}
