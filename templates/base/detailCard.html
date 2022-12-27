@@ -3,11 +3,31 @@
 {% block detailcard %}
 <div class="card">
     <div class="card-header">
-      {{ticketdetail.title}}
+      <h2>{{ticketdetail.title}}</h2>
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
+        <h5>Status: 
+          {% if ticketdetail.status == 'Failed' %}
+          <span class="badge bg-danger">
+          {{ticketdetail.status}}</span></h5>
+          {% elif ticketdetail.status == 'Passed' %}
+          <span class="badge bg-success">
+          {{ticketdetail.status}}</span></h5>
+          {% elif ticketdetail.status == 'Retest' %}
+          <span class="badge bg-info">
+          {{ticketdetail.status}}</span></h5>
+          {% else %}
+          <span class="badge bg-primary">
+            {{ticketdetail.status}}</span></h5>
+          {% endif %}
+      <ul>
+        <li>Created by: {{ticketdetail.user}}</li>
+        <li>Assigned to: {{ticketdetail.user}}</li>
+      </ul>
+        <hr>
         <p>{{ticketdetail.summary}}</p>
+        <hr>
         <footer class="blockquote-footer">Created by: {{ticketdetail.user}}<cite title="Source Title">{{ticketdetail.created | date:' F d, Y'}}</cite></footer>
       </blockquote>
     </div>

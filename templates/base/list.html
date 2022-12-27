@@ -1,18 +1,27 @@
 {% extends 'base/index.html' %}
 
 {% block list %}
+<form action="" method="get">
+  <div class="input-group flex-nowrap">
+      {% csrf_token %}
+      <input type="text" name="search-title" class="form-control" placeholder="Search for ticket" aria-label="Username" aria-describedby="addon-wrapping">
+  </div>
+</form>
+<br>
 
 <ol class="list-group list-group-numbered ">
     {% for tickets in tickets %}
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="ms-2 me-auto">
-        <div class="fw-bold">{{tickets.title}}</div>
+        <div class="fw-bold"> 
+          <a href="{% url 'detail' tickets.id %}" style="text-decoration: none;">{{tickets.title}}</a>
+        </div>
         User: {{tickets.user}}
       </div>
       <div style="justify-content: space-between;">
         <a type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit ticket</a>
-        <a type="button" href="{% url 'delete' tickets.id %}" class="btn btn-secondary btn-sm">Delete Ticket</a>
-        <a href="{% url 'detail' tickets.id %}" type="button" class="btn btn-success btn-sm">View Ticket</a>
+        <a type="button" href="{% url 'delete' tickets.id %}" class="btn btn-danger btn-sm">Delete Ticket</a>
+       
 
       </div>  
     </li>
