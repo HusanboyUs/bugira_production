@@ -7,6 +7,7 @@ from django.views.generic import DeleteView
 from .models import Tickets
 from .forms import TicketCreateForm
 #imports
+
 class home_view_template(TemplateView):
     template_name='base/index.html'
 
