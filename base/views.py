@@ -57,7 +57,6 @@ def createTicket(request):
         if form.is_valid():
             instance=form.save(commit=False)
             instance.user=request.user
-            print('came here')
             instance.save()
             return redirect('tickets_list_view')
     context={'form':form}
