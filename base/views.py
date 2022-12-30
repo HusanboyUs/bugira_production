@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DeleteView
 from .models import Tickets
-
+from .forms import TicketCreateForm
 
 class home_view_template(TemplateView):
     template_name='base/index.html'
@@ -48,4 +48,16 @@ class ticket_edit_view(UpdateView):
     pass
 
 
-
+def createTicket(request):
+    form=TicketCreateForm()
+    ticket=Tickets.objects.all()
+    if request.method == 'POST':
+        form=TicketCreateForm(request.POST)
+        if form.is_valid():
+            instance=form.save(commit=False)
+            instance.user=request.user
+            print('came here')
+            instance.save()
+            return redirect('tickets_list_view')
+    context={'form':form}
+    return render(request, 'base/create.html',context)

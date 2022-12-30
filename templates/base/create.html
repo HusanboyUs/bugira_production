@@ -1,0 +1,15 @@
+{% extends 'base/index.html' %}
+
+{% block createcard %}
+<form method="post">
+    {% csrf_token%}
+    <div class="form-group">
+      {{form.user}}
+      {{form.title}}
+      <br>
+      {{form.summary}}
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock createcard %}
