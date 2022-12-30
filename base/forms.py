@@ -10,3 +10,5 @@ class TicketCreateForm(forms.ModelForm):
              'title' : forms.TextInput(attrs={'placeholder':'Title','class':'form-control'}),
             'summary' : forms.Textarea(attrs={'placeholder':'Summary','class':'form-control'}),
         }
+        
+        #classing the inputs form
